@@ -18,3 +18,4 @@ for (pkg in c(cran_pkgs, biocductor_pkgs)) {
 }
 
 BiocManager::install("GEOquery",ask = FALSE)
+library(GEOquery)
