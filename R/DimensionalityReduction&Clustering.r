@@ -13,3 +13,17 @@ p2_2 <- JackStrawPlot(scRNA,dims = 1:20, reduction = "pca") +
   theme(legend.position="bottom") +
   labs(tag = "E")
 p2_3 <- ElbowPlot(scRNA, ndims=20, reduction="pca") 
+
+pc.num=1:20
+scRNA <- FindNeighbors(scRNA, dims = pc.num) 
+scRNA <- FindClusters(scRNA, resolution = 0.5)
+scRNA = RunTSNE(scRNA, dims = pc.num)
+p3_1 <- DimPlot(scRNA, reduction = "tsne",label=T) +
+  labs(tag = "E")
+
+scRNA <- NormalizeData(scRNA, normalization.method = "LogNormalize")
+diff.wilcox = FindAllMarkers(scRNA)
+
+
+scRNA <- NormalizeData(scRNA, normalization.method = "LogNormalize")
+diff.wilcox = FindAllMarkers(scRNA)
